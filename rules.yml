@@ -1,0 +1,16 @@
+groups:
+ - name: target_rules
+   rules:
+   - alert: InstanceDown
+     expr: up == 0 
+     for : 1m
+ - name: my_custom_rules
+   rules:
+   - alert: CheckOutsOdd
+     expr: checkouts_total{job="nodejs-example-application"} % 2 == 1 
+     labels:
+       severity : purple
+       service: finance
+     annotations:
+       descriptions: 'The number of checkouts is odd for payment method {{$labels.payment_method}} . This has been recognized as a business oddity that deserves notification'
+       summary: 'Odd number of Checkouts for payment method {{$labels.payment_method}}'
