@@ -56,9 +56,7 @@ scrape_configs:
     - target_label: __address__
       replacement: 127.0.0.1:9115
   - job_name: 'prometheus'
-
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
-
     static_configs:
     - targets: ['localhost:9090']
